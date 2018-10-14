@@ -1,4 +1,3 @@
-package second_shape_drawing;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,7 @@ public class DrawingProg2 extends JFrame implements ActionListener{
 	public static final int HEIGHT = 400;
 	DrawingPanel dp = new DrawingPanel();
 	JCheckBox filled = new JCheckBox("filled");
-	JRadioButton rectangle, oval, line, scribble;
+	JRadioButton rectangle, oval, line, scribble, red, green, blue;
 	
 	public DrawingProg2() {
 		super("Second Shape Drawing");
@@ -55,6 +54,7 @@ public class DrawingProg2 extends JFrame implements ActionListener{
 		rectangle = new JRadioButton (shapes[0]);
 		north.add(rectangle);
 		shapeNames.add(rectangle);
+		rectangle.setSelected(true);
 		rectangle.addActionListener(this);
 		
 		oval = new JRadioButton(shapes[1]);
@@ -73,6 +73,29 @@ public class DrawingProg2 extends JFrame implements ActionListener{
 		scribble.addActionListener(this);
 		
 		add(north, BorderLayout.NORTH);
+		
+		//JPanel with GridLayout for the West side to pick the different colors 
+		JPanel west = new JPanel();
+		west.setLayout(new GridLayout(3, 1));
+		ButtonGroup colorNames = new ButtonGroup();
+		
+		red = new JRadioButton(colors[0]);
+		west.add(red);
+		colorNames.add(red);
+		red.setSelected(true);
+		red.addActionListener(this);
+		
+		green = new JRadioButton(colors[1]);
+		west.add(green);
+		colorNames.add(green);
+		green.addActionListener(this);
+		
+		blue = new JRadioButton(colors[2]);
+		west.add(blue);
+		colorNames.add(blue);
+		blue.addActionListener(this);
+		
+		add(west, BorderLayout.WEST);
 	}
 	
 	@Override 
@@ -86,6 +109,12 @@ public class DrawingProg2 extends JFrame implements ActionListener{
 			dp.drawing.setDrawType(DrawType.line);
 		} else if (source == scribble) {
 			dp.drawing.setDrawType(DrawType.scribble);
+		} else if (source == red) {
+			dp.drawing.setColor(Color.RED);
+		} else if (source == green) {
+			dp.drawing.setColor(Color.GREEN);
+		} else if (source == blue) {
+			dp.drawing.setColor(Color.BLUE);
 		}
 	}
 	
