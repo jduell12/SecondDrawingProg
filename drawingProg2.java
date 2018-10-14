@@ -1,3 +1,4 @@
+package second_shape_drawing;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -39,6 +40,17 @@ public class DrawingProg2 extends JFrame implements ActionListener{
 		JPanel north = new JPanel();
 		north.setLayout(new FlowLayout());
 		ButtonGroup shapeNames = new ButtonGroup();
+		
+		north.add(filled);
+		filled.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			if(filled.isSelected()) {
+					dp.drawing.setFilled(true);
+				} else {
+					dp.drawing.setFilled(false);
+				}
+			}
+		});
 		
 		rectangle = new JRadioButton (shapes[0]);
 		north.add(rectangle);
